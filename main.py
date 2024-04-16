@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 
 import crud
@@ -17,18 +17,13 @@ def get_db() -> Session:
         db.close()
 
 
-@app.get("/")
-def root():
-    return {"message": "Hello world"}
-
-
 @app.get("/authors/", response_model=list[schemas.AuthorBase])
 def read_authors(db: Session = Depends(get_db)):
     return crud.get_all_authors(db)
 
 
-@app.get("/books/}", response_model=schemas.BookBase)
-def read_book(db: Session = Depends(get_db)):
+@app.get("/books/", response_model=schemas.BookBase)
+def read_books(db: Session = Depends(get_db)):
     return crud.get_all_books(db)
 
 
