@@ -7,15 +7,15 @@ from db.models import Author, Book
 
 
 def get_all_authors(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(Author).all()
+    return db.query(Author).offset(skip).limit(limit).all()
 
 
-def get_author_by_name(db: Session, name: str):
-    return db.query(Author).filter(Author.name == name).all()
+def get_author_by_id(db: Session, author_id: int):
+    return db.query(Author).filter(Author.id == author_id).first()
 
 
 def get_all_books(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(Book).all()
+    return db.query(Book).offset(skip).limit(limit).all()
 
 
 def get_book_by_title(db: Session, title: str):
