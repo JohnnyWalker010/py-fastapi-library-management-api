@@ -6,7 +6,7 @@ import schemas
 from db.models import Author, Book
 
 
-def get_all_authors(db: Session):
+def get_all_authors(db: Session, skip: int = 0, limit: int = 10):
     return db.query(Author).all()
 
 
@@ -14,7 +14,7 @@ def get_author_by_name(db: Session, name: str):
     return db.query(Author).filter(Author.name == name).all()
 
 
-def get_all_books(db: Session):
+def get_all_books(db: Session, skip: int = 0, limit: int = 10):
     return db.query(Book).all()
 
 
