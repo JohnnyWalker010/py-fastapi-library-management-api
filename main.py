@@ -51,7 +51,7 @@ def create_book(
     return crud.create_book(db, book)
 
 
-@app.get("/books/by_author/{author_id}", response_model=schemas.Book)
+@app.get("/books/by_author/{author_id}/", response_model=schemas.Book)
 def read_book_by_author(author_id: int, db: Session = Depends(get_db)):
     books = crud.get_books_by_author(db, author_id=author_id)
     if not books:
